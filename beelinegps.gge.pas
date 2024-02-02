@@ -1,7 +1,5 @@
-{
-  GeoGet 2
-  www: http://geoget.ararat.cz/doku.php/user:skript:cachebox
-  autor: mikrom, http://mikrom.cz
+{ geoget 2
+  mod by mikrom
   
   v1.0, 20090427, upraveny informace waypointu, nyní nadm. výška, hodnocení, hint..
   v1.1, 20090609, pridava nadmorskou vysku a poznamku do listingu
@@ -14,7 +12,8 @@
   mod Arne1
    20100316  odlisna ikona pro nalezenou finalovku
    20101025  prehozeno generovani waypointu a kese kvuli prekryvu ikon na mape
-   20101124  upraveno dle 1.5.1
+  v1.5.2,   20101124  upraveno dle 1.5.1
+  v1.5.3,   20120106  více info k finalu, negenerovat nulove waypointy
 
   ToDo:
   - My Cache...
@@ -60,30 +59,33 @@ begin
   for n := 0 to GC.Waypoints.Count - 1 do
     if GC.Waypoints[n].IsListed then
     begin
-      Resultw := Resultw + ' <wpt lat="' + GC.Waypoints[n].Lat + '" lon="' + GC.Waypoints[n].Lon + '">' + CRLF;
-      Resultw := Resultw + '  <time>' + formatdatetime('yyyy"-"mm"-"dd"T"hh":"nn":"ss"."zzz', GC.Hidden) + '</time>' + CRLF;
-      Resultw := Resultw + '  <name>' + cdata(UtfToAscii(GC.Waypoints[n].Name + ' (' + GC.Name)) + ')</name>' + CRLF;
-      Resultw := Resultw + '  <cmt>' + cdata(UtfToAscii(GC.Waypoints[n].Description)) +'</cmt>' + CRLF;
-      if GC.Waypoints[n].IsFinal then
-        Resultw := Resultw + '  <desc>' + cdata(UtfToAscii(GC.ID + hint)) +'</desc>' + CRLF
-      else
-        Resultw := Resultw + '  <desc>' + cdata(UtfToAscii(GC.ID)) +'</desc>' + CRLF;
-      Resultw := Resultw + '  <url>' + cdata(GC.Waypoints[n].URL) +'</url>' + CRLF;
-      Resultw := Resultw + '  <urlname>' + cdata(GC.Waypoints[n].Name) + '</urlname>' + CRLF;
-      if GC.Waypoints[n].IsFinal then
-      begin
-        if GC.IsFound then
-          // Lze pouzit nasledujici ikony:
-          // Airport, Beach, Bridge, Boat Ramp, Car, Cemetery, Danger Area, Fishing Area, Gas Station, Golf Course, Information, Lighthouse,
-          // Marina, Mine, Museum, Parachute Area, Park, Picnic Area, Post Office, Restroom, Shopping Center, Stadium, Summit
-          Resultw := Resultw + '  <sym>Golf Course</sym>' + CRLF
-        else
-          Resultw := Resultw + '  <sym>Final Location</sym>' + CRLF
-      end
-      else
-        Resultw := Resultw + '  <sym>' + GC.Waypoints[n].WptType + '</sym>' + CRLF;
-      Resultw := Resultw + '  <type>Waypoint|' + GC.Waypoints[n].WptType + '</type>' + CRLF;
-      Resultw := Resultw + ' </wpt>' + CRLF + CRLF;
+     if  (GC.Waypoints[n].Lat<>'0') and (GC.Waypoints[n].Lon<>'0') then
+     begin  
+       Resultw := Resultw + ' <wpt lat="' + GC.Waypoints[n].Lat + '" lon="' + GC.Waypoints[n].Lon + '">' + CRLF;
+       Resultw := Resultw + '  <time>' + formatdatetime('yyyy"-"mm"-"dd"T"hh":"nn":"ss"."zzz', GC.Hidden) + '</time>' + CRLF;
+       Resultw := Resultw + '  <name>' + cdata(UtfToAscii(GC.Waypoints[n].Name + ' (' + GC.Name)) + ')</name>' + CRLF;
+       Resultw := Resultw + '  <cmt>' + cdata(UtfToAscii(GC.Waypoints[n].Description)) +'</cmt>' + CRLF;
+       if GC.Waypoints[n].IsFinal then
+         Resultw := Resultw + '  <desc>' + cdata(UtfToAscii(GC.ID+ ', ' + GC.IDTag + hint)) +'</desc>' + CRLF
+       else
+         Resultw := Resultw + '  <desc>' + cdata(UtfToAscii(GC.ID)) +'</desc>' + CRLF;
+       Resultw := Resultw + '  <url>' + cdata(GC.Waypoints[n].URL) +'</url>' + CRLF;
+       Resultw := Resultw + '  <urlname>' + cdata(GC.Waypoints[n].Name) + '</urlname>' + CRLF;
+       if GC.Waypoints[n].IsFinal then
+       begin
+         if GC.IsFound then
+           // Lze pouzit nasledujici ikony:
+           // Airport, Beach, Bridge, Boat Ramp, Car, Cemetery, Danger Area, Fishing Area, Gas Station, Golf Course, Information, Lighthouse,
+           // Marina, Mine, Museum, Parachute Area, Park, Picnic Area, Post Office, Restroom, Shopping Center, Stadium, Summit
+           Resultw := Resultw + '  <sym>Golf Course</sym>' + CRLF
+         else
+           Resultw := Resultw + '  <sym>Final Location</sym>' + CRLF
+       end
+       else
+         Resultw := Resultw + '  <sym>' + GC.Waypoints[n].WptType + '</sym>' + CRLF;
+       Resultw := Resultw + '  <type>Waypoint|' + GC.Waypoints[n].WptType + '</type>' + CRLF;
+       Resultw := Resultw + ' </wpt>' + CRLF + CRLF;
+     end; 
     end;
 end;
 

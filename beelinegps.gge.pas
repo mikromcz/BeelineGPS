@@ -104,7 +104,7 @@ begin
     if GC.TagValues('Hodnoceni') <> '' then hodnoceni := ', Hodnoceni: ' + GC.TagValues('Hodnoceni');
 
     // hint
-    if GC.Hint <> '' then hint := ', Hint: ' + Rot13(GC.Hint)
+    if GC.Hint <> '' then hint := ', Hint: ' + GC.Hint
     else hint := ', Hint: -';
 
     // Export for Waypoints

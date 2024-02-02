@@ -1,5 +1,7 @@
-{ geoget 2
-  mod by mikrom
+{
+  GeoGet 2
+  www: http://geoget.ararat.cz/doku.php/user:skript:cachebox
+  autor: mikrom, http://mikrom.cz
   
   v1.0, 20090427, upraveny informace waypointu, nyní nadm. výška, hodnocení, hint..
   v1.1, 20090609, pridava nadmorskou vysku a poznamku do listingu
@@ -148,7 +150,10 @@ begin
     else cachetype := '';
     Result := Result + '  <sym>Geocache' + cachetype + '</sym>' + CRLF; //<sym><![CDATA[Geocache]]></sym>}
 
-    Result := Result + '  <sym>Geocache</sym>' + CRLF;
+    if GC.IsFound then
+      Result := Result + '  <sym>Geocache Found</sym>' + CRLF
+    else
+      Result := Result + '  <sym>Geocache</sym>' + CRLF;
     Result := Result + '  <type>Geocache|' + GC.CacheType + '</type>' + CRLF;
 
     // disablovana, nebo archivovana

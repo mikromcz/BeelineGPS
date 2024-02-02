@@ -1,0 +1,30 @@
+=== 1.5.2.2 (2010/12/15) ===
+   * oprava rozliseni nalezenych a nenalezenych kesi
+
+=== 1.5.2.1 (2010/12/08) ===
+   * oprava hintu, vlivem zjednodusovani jsem ho omylem zakodoval do ROT13 :)
+
+=== 1.5.2.0 (2010/12/03) ===
+   * možnost importovat wpt až po keších kvùli pøekrývání ((Vymyslel a zaslal mi [[http://www.geocaching.com/profile/?u=Arne1|Arne1]]))
+   * odlišná ikona pro nalezenou finálku
+
+=== 1.5.1 (2010/11/21) ===
+   * Na žádost pøidána možnost pár nastavení, lze tedy nastavit zda chceme exportovat logy a kolik, waypointy a listingy
+
+=== 1.5 (2010/10/04) ===
+   * Upraveno do podoby instalaèního balíèku GIP
+
+=== 1.4 (2009/06/16) ===
+  * definitivne dokoncena sekce s poznamkou, generuje se jen kdyz poznamka existuje, pokud je v poznamce odradkovani, tak se projevi, a kod je se zavrenejma ocima validni (tabulka v odstavci)
+
+=== 1.3 (2009/06/15) ===
+  * exportuje se max 5 logu ke kazdy kesi
+
+=== 1.2 (2009/06/11) ===
+  * opraveno poznámka -> poznamka
+
+=== 1.1 (2009/06/09) ===
+  * pridava nadmorskou vysku a poznamku do listingu
+
+=== 1.0 (2009/04/27) ===
+  * upraveny informace waypointu, nyní nadm. výška, hodnocení, hint..
